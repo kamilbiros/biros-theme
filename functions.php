@@ -16,6 +16,11 @@ if ( ! function_exists( 'biros_theme_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function biros_theme_setup() {
+
+		// ADDING BS4NAVWALKER
+		require_once('bs4navwalker.php');
+
+
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -158,4 +163,9 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+function add_menuclass($ulclass) {
+    return preg_replace('/<a/', '<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"', $ulclass, -1);
+}
+add_filter('wp_nav_menu','add_menuclass');
 
